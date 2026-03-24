@@ -45,9 +45,14 @@ for h4 in soup.find_all("h4"):
         if hermano_a_pdf.name == "a":
 
             a = hermano_a_pdf
-
+        # Comprueba que el hermano sea un Tag de BeautifulSoup antes de llamar a .find()
         elif hasattr(hermano_a_pdf , "find"):
 
             a = hermano_a_pdf.find("a")
 
-        
+        # Si se encontro un <a> comprueba que su atributo
+        # 1. Existe , devulve "" si no existe
+        # 2. Termina en .pdf 
+        if a and a.get("href", "").endswith(".pdf"):
+            pdf_link = a["href"]
+            
