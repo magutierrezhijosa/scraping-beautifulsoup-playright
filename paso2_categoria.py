@@ -67,3 +67,18 @@ for h4 in soup.find_all("h4"):
     # Vamos a buscar la etiqueta de la fecha dentro del h4 que recogemos del BeutifulSoup
     div_fecha = h4.find_next("div", class_="data_editorial")
     fecha = div_fecha.get_text(strip=True) if div_fecha else None
+
+    # Guardamos las publicaciones en la lista
+    publicaciones.append({
+        "titulo": titulo,
+        "fecha": fecha,
+        "pdf": pdf_link
+    })
+
+# Mostramos las primeras 3 para verificar 
+print(f"\nPublicaciones encontradas: {len(publicaciones)}")
+for pub in publicaciones[:3]:
+    print(f"  Titulo  :  {pub["titulo"]}")
+    print(f"  Fecha  :  {pub["fecha"]}")
+    print(f"  PDF  :  {pub["pdf"]}")
+    print()
